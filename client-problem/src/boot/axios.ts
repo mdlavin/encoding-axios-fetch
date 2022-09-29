@@ -1,7 +1,11 @@
 import { boot } from 'quasar/wrappers';
 import Axios, { AxiosInstance } from 'axios';
 import { Response } from 'cross-fetch';
-globalThis.Response = Response;
+
+if (!globalThis.Response) {
+  globalThis.Response = Response;
+}
+
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     $axios: AxiosInstance;
